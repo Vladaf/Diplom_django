@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block catalog %}
+    {% include 'profile/profile_aside.html' %}
+    <div id="content" class="app-content white bg box-shadow-z2" role="main">
+        {% include 'profile/profile_header.html' %}
+        {% include 'base/player.html' %}
+        {% include 'profile/profile_body.html' %}
+    </div>
+    {% include 'base/switcher.html' %}
+    {% include 'base/search.html' %}
+    {% include 'base/share.html' %}
+{% endblock catalog %}
