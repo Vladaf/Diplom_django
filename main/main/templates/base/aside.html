@@ -1,9 +1,10 @@
+{% load static %}
 <div id="aside" class="app-aside modal fade nav-dropdown">
     <!-- fluid app aside -->
     <div class="left navside grey dk" data-layout="column">
       <div class="navbar no-radius">
         <!-- brand -->
-        <a href="index.html" class="navbar-brand md">
+        <a href="{% url 'home_page' %}" class="navbar-brand md">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
             <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.2)"/>
             <circle cx="24" cy="24" r="22" fill="#1c202b" class="brand-color"/>
@@ -13,7 +14,7 @@
             <circle cx="24" cy="24" r="3" fill="#000000"/>
           </svg>
         
-          <img src="images/logo.png" alt="." class="hide">
+          <img src="{% static 'images/logo.png' %}" alt="." class="hide">
           <span class="hidden-folded inline">pulse</span>
         </a>
         <!-- / brand -->
@@ -26,7 +27,7 @@
                 <span class="text-xs text-muted">Main</span>
               </li>
               <li>
-                <a href="player.html">
+                <a href="{% url 'discover_page' %}">
                   <span class="nav-icon">
                     <i class="material-icons">
                       play_circle_outline
@@ -36,7 +37,7 @@
                 </a>
               </li>
               <li>
-                <a href="browse.html">
+                <a href="{% url 'browse_page' %}">
                   <span class="nav-icon">
                     <i class="material-icons">
                       sort
@@ -46,7 +47,7 @@
                 </a>
               </li>
               <li>
-                <a href="chart.html">
+                <a href="{% url 'charts_page' %}">
                   <span class="nav-icon">
                     <i class="material-icons">
                       trending_up
@@ -56,7 +57,7 @@
                 </a>
               </li>
               <li>
-                <a href="artist.html">
+                <a href="{% url 'artists_page' %}">
                   <span class="nav-icon">
                     <i class="material-icons">
                       portrait
@@ -81,7 +82,7 @@
                 <span class="text-xs text-muted">Your collection</span>
               </li>
               <li>
-                <a href="profile.html#tracks">
+                <a href="{% url 'profile_page' %}#tracks">
                   <span class="nav-label">
                     <b class="label">8</b>
                   </span>
@@ -94,7 +95,7 @@
                 </a>
               </li>
               <li>
-                <a href="profile.html#playlists">
+                <a href="{% url 'profile_page' %}#playlists">
                   <span class="nav-icon">
                     <i class="material-icons">
                       queue_music
@@ -104,13 +105,23 @@
                 </a>
               </li>
               <li>
-                <a href="profile.html#likes">
+                <a href="{% url 'profile_page' %}#likes">
                   <span class="nav-icon">
                     <i class="material-icons">
                       favorite_border
                     </i>
                   </span>
                   <span class="nav-text">Likes</span>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'profile_page' %}#profile">
+                  <span class="nav-icon">
+                    <i class="material-icons">
+                      profile
+                    </i>
+                  </span>
+                  <span class="nav-text">Profile</span>
                 </a>
               </li>
             </ul>
@@ -120,23 +131,23 @@
         <div class="nav-fold dropup">
           <a data-toggle="dropdown">
               <span class="pull-left">
-                <img src="images/a3.jpg" alt="..." class="w-32 img-circle">
+                <img src="{% static 'images/a3.jpg' %}" alt="..." class="w-32 img-circle">
               </span>
               <span class="clear hidden-folded p-x p-y-xs">
                 <span class="block _500 text-ellipsis">Rachel Platten</span>
               </span>
           </a>
           <div class="dropdown-menu w dropdown-menu-scale ">
-            <a class="dropdown-item" href="profile.html#profile">
+            <a class="dropdown-item" href="{% url 'profile_page' %}#profile">
               <span>Profile</span>
             </a>
-            <a class="dropdown-item" href="profile.html#tracks">
+            <a class="dropdown-item" href="{% url 'profile_page' %}#tracks">
               <span>Tracks</span>
             </a>
-            <a class="dropdown-item" href="profile.html#playlists">
+            <a class="dropdown-item" href="{% url 'profile_page' %}#playlists">
               <span>Playlists</span>
             </a>
-            <a class="dropdown-item" href="profile.html#likes">
+            <a class="dropdown-item" href="{% url 'profile_page' %}#likes">
               <span>Likes</span>
             </a>
             <div class="dropdown-divider"></div>

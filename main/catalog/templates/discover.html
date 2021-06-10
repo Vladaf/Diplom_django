@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block catalog %}
+    {% include 'base/aside.html' %}
     <div id="content" class="app-content white bg" role="main">
-        {% include 'catalog/discover_header.html' %}
+        {% include 'base/header.html' %}
         {% include 'base/player.html' %}
         {% include 'catalog/discover_body.html' %}
     </div>
-    {% include 'base/switcher.html' %}
     {% include 'base/search.html' %}
     {% include 'base/share.html' %}
 {% endblock catalog %}
