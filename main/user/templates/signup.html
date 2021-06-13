@@ -39,16 +39,9 @@
         <div class="m-y text-sm">
           OR
         </div>
-        <form name="form" action="home.html">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" required>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required>
-          </div>
+        <form name="form" action="" method="post">
+          {% csrf_token %}
+          {{registration_form}}
           <div class="m-b-md text-sm">
             <span class="text-muted">By clicking Sign Up, I agree to the</span> 
             <a href="#">Terms of service</a> 
