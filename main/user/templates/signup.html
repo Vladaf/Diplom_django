@@ -39,7 +39,7 @@
         <div class="m-y text-sm">
           OR
         </div>
-        <form name="form" action="" method="post">
+        <form name="form" action="{% url 'signup_page' %}" method="post">
           {% csrf_token %}
           {{registration_form}}
           <div class="m-b-md text-sm">

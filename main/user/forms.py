@@ -25,16 +25,6 @@ class LoginForm(forms.Form):
             }
         )
     )
-    email = forms.EmailField(
-        widget = forms.EmailInput(
-            attrs = {
-                "class": "form-control",
-                "id": "email",
-                "placeholder": "Email",
-                "data-error": "Please enter your email",
-            }
-        )
-    )
 
     def clean(self):
         user = authenticate(**dict(self.cleaned_data))
@@ -44,13 +34,19 @@ class LoginForm(forms.Form):
         else:
             self.add_error("username", "Invalid username")
             self.add_error("password", "Invalid password")
-            self.add_error("emain", "Invalid email")
             raise forms.ValidationError("User not found!")
 
 class RegistrationForm(forms.ModelForm):
 
     password_repeate = forms.CharField(
-        widget = forms.PasswordInput()
+        widget = forms.PasswordInput(
+            attrs = {
+                    "class": "form-control",
+                    "id": "password_repeate",
+                    "placeholder": "Repeate password",
+                    "data-error": "Please repeate your password",
+                }
+        )
     )
 
     class Meta:
@@ -58,12 +54,35 @@ class RegistrationForm(forms.ModelForm):
         #fields = "__all__"
         fields =[
             "username",
-            "password",
             "email",
+            "password",
             "is_musician",
         ]
         widgets = {
-            "password": forms.PasswordInput()
+            "username": forms.TextInput(
+                attrs = {
+                    "class": "form-control",
+                    "id": "name",
+                    "placeholder": "Your Name",
+                    "data-error": "Please enter your user name",
+                }
+            ),
+            "email": forms.EmailInput(
+                attrs = {
+                    "class": "form-control",
+                    "id": "email",
+                    "placeholder": "Email",
+                    "data-error": "Please enter your email",
+                }
+            ),
+            "password": forms.PasswordInput(
+                attrs = {
+                    "class": "form-control",
+                    "id": "password",
+                    "placeholder": "Password",
+                    "data-error": "Please enter your password",
+                }
+            ),
         }
 
     def clean(self) -> Dict[str, Any]:

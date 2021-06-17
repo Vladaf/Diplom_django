@@ -21,7 +21,7 @@ def signin(request):
 
     return render(request, "signin.html", context)
 
-@login_required(login_url="login_page")
+@login_required(login_url="signin_page")
 def signout(request):
     log_out(request)
     return redirect(reverse("home_page"))

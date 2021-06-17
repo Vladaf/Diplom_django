@@ -39,26 +39,23 @@
         <div class="m-y text-sm">
           OR
         </div>
-        <form name="form" action="home.html">
-          {% if login_form.non_field_errors %}
-            {{login_form.non_field_errors}}
-          {% endif %}
-          {% csrf_token %}
-          <div class="form-group">
-            {{login_form.username}}
-          </div>
-          <div class="form-group">
-            {{login_form.email}}
-          </div>
-          <div class="form-group">
-            {{login_form.password}}
-          </div>      
-          <div class="m-b-md">        
-            <label class="md-check">
-              <input type="checkbox"><i class="primary"></i> Keep me signed in
-            </label>
-          </div>
-          <button type="submit" class="btn btn-lg black p-x-lg">Sign in</button>
+        <form name="form" action="{% url 'signin_page' %}" method="post">
+            {% if login_form.non_field_errors %}
+              {{login_form.non_field_errors}}
+            {% endif %}
+            {% csrf_token %}
+            <div class="form-group">
+              {{login_form.username}}
+            </div>
+            <div class="form-group">
+              {{login_form.password}}
+            </div>      
+            <div class="m-b-md">        
+              <label class="md-check">
+                <input type="checkbox"><i class="primary"></i> Keep me signed in
+              </label>
+            </div>
+            <button type="submit" class="btn btn-lg black p-x-lg">Sign in</button>
         </form>
         <div class="m-y">
           <a href="forgot-password.html" class="_600">Forgot password?</a>
