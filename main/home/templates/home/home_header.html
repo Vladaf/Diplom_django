@@ -18,7 +18,7 @@
             <span class="hidden-folded inline">pulse</span>
         </a>
         <ul class="nav navbar-nav pull-right">
-            {% if not user.is_anonymous %}
+            {% if user.is_authenticated %}
             <li class="nav-item">
                 <a href="{% url 'signout_page' %}" class="nav-link">
                     <span class="btn btn-sm rounded primary _600">

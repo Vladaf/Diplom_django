@@ -6,7 +6,7 @@ from django.views import View
 from user.forms import LoginForm, RegistrationForm
 
 def signin(request):
-    if not request.user.is_anonymous:
+    if request.user.is_authenticated:
         return redirect(reverse("home_page"))
     context = {
         "login_form": LoginForm()

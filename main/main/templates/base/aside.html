@@ -77,10 +77,11 @@
                 </a>
               </li>
               
-            
+
               <li class="nav-header hidden-folded m-t">
                 <span class="text-xs text-muted">Your collection</span>
               </li>
+              {% if user.is_authenticated %}
               <li>
                 <a href="{% url 'profile_page' %}#tracks">
                   <span class="nav-label">
@@ -124,40 +125,20 @@
                   <span class="nav-text">Profile</span>
                 </a>
               </li>
+              {% else %}
+              <li>
+                <a href="{% url 'signin_page' %}">
+                  <span class="nav-icon">
+                    <i class="material-icons">
+                      profile
+                    </i>
+                  </span>
+                  <span class="nav-text">Signin</span>
+                </a>
+              </li>
+              {% endif %}
             </ul>
           </nav>
-      </div>
-      <div data-flex-no-shrink>
-        <div class="nav-fold dropup">
-          <a data-toggle="dropdown">
-              <span class="pull-left">
-                <img src="{% static 'images/a3.jpg' %}" alt="..." class="w-32 img-circle">
-              </span>
-              <span class="clear hidden-folded p-x p-y-xs">
-                <span class="block _500 text-ellipsis">Rachel Platten</span>
-              </span>
-          </a>
-          <div class="dropdown-menu w dropdown-menu-scale ">
-            <a class="dropdown-item" href="{% url 'profile_page' %}#profile">
-              <span>Profile</span>
-            </a>
-            <a class="dropdown-item" href="{% url 'profile_page' %}#tracks">
-              <span>Tracks</span>
-            </a>
-            <a class="dropdown-item" href="{% url 'profile_page' %}#playlists">
-              <span>Playlists</span>
-            </a>
-            <a class="dropdown-item" href="{% url 'profile_page' %}#likes">
-              <span>Likes</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="docs.html">
-              Need help?
-            </a>
-            <a class="dropdown-item" href="{% url 'signin_page' %}">Sign out</a>
-          </div>
-        </div>
-        
       </div>
     </div>
 </div>

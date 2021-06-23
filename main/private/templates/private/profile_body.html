@@ -14,11 +14,11 @@
                 <div class="col-sm">
                     <div class="p-l-md no-padding-xs">
                     <h1 class="page-title">
-                        <span class="h1 _800">Rachel Platten</span>
+                        <span class="h1 _800">{{ user.username }}</span>
                     </h1>
                     <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quamquam tu hanc copiosiorem etiam soles dicere. Nihil illinc huc pervenit. Verum hoc idem saepe faciamus. Quid ad utilitatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.</p>
                     <div class="item-action m-b">
-                        <a href="#" class="btn btn-sm rounded primary">Upload</a>
+                        <a href="{% url 'upload_page' %}" class="btn btn-sm rounded primary">Upload</a>
                         <a href="#" class="btn btn-sm rounded white">Edit Profile</a>
                     </div>
                     <div class="block clearfix m-b">
@@ -662,10 +662,10 @@
                     <div class="col-sm-3 form-control-label text-muted">Music Type</div>
                     <div class="col-sm-9">
                         <select class="form-control c-select">
-                        <option>Blue</option>
-                        <option>Electro</option>
-                        <option>Pop</option>
-                        <option>Soul</option>
+                            <option>Blue</option>
+                            <option>Electro</option>
+                            <option>Pop</option>
+                            <option>Soul</option>
                         </select>
                     </div>
                     </div>
