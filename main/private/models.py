@@ -34,7 +34,7 @@ class Song(models.Model):
     class Meta:
         db_table = "songs"
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -44,7 +44,7 @@ class Album(models.Model):
     )
     class Meta:
         db_table = "albums"
-    def str(self):
+    def __str__(self):
         return self.name
 
 
@@ -54,5 +54,5 @@ class Genre(models.Model):
     )
     class Meta:
         db_table = "genres"
-    def str(self):
+    def __str__(self):
         return self.name
