@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/vladaf/Документы/Python/django_diplom/.venv"
+set -gx VIRTUAL_ENV "/home/vladaf/Документы/Python/Diplom_django/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

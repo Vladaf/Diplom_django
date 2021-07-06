@@ -3,27 +3,29 @@ from django.db.models.fields.related import ForeignKey
 
 
 class Song(models.Model):
+    post_author = models.CharField(
+        max_length = 100,
+        verbose_name = "Author of the post",
+    )
     band = models.CharField(
-        max_length = 50,
+        max_length = 100,
         verbose_name = "Band",
     )
     name = models.CharField(
         max_length = 50,
-        verbose_name = "Song name",
+        verbose_name = "Song",
     )
-    album = models.ForeignKey(
-        "Album",
-        null = True,
-        on_delete = models.CASCADE,
-        related_name="album",
+    album = models.CharField(
+        max_length = 50,
+        verbose_name = "Album",
     )
     post_date = models.DateField(
         auto_now_add = True,
         verbose_name = "Post date",
     )
-    genre = models.ManyToManyField(
+    genre = models.ForeignKey(
         "Genre",
-        related_name="genres",
+        on_delete=models.CASCADE
     )
     audio = models.FileField(
         verbose_name = "Audio",
@@ -36,17 +38,6 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Album(models.Model):
-    name = models.CharField(
-        max_length = 30,
-    )
-    class Meta:
-        db_table = "albums"
-    def __str__(self):
-        return self.name
-
 
 class Genre(models.Model):
     name = models.CharField(

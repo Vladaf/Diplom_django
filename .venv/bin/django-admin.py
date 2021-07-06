@@ -1,4 +1,4 @@
-#!/home/vladaf/Документы/Python/django_diplom/.venv/bin/python3
+#!/home/vladaf/Документы/Python/Diplom_django/.venv/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

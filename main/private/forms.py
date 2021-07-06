@@ -7,6 +7,7 @@ class UploadForm(forms.ModelForm):
     class Meta:
         model = Song
         fields = "__all__"
+        exclude = ["post_author"]
         widgets = {
             "band": forms.TextInput(
                 attrs = {
@@ -24,7 +25,7 @@ class UploadForm(forms.ModelForm):
                     "data-error": "Please enter Name of Song",
                 }
             ),
-            "album": forms.Select(
+            "album": forms.TextInput(
                 attrs = {
                     "class": "form-control",
                     "id": "album",
