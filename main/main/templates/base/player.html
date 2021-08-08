@@ -1,7 +1,3 @@
 <div class="app-footer app-player grey bg">
-    {% for item in page_obj %}
-    <div class="playlist" style="width: 100%;">
-        <source src="{% if item.audio %} {{item.audio.url}} {% endif %}" type="audio/mp3"/>
-    </div>
-    {% endfor %}
+    <div class="playlist" style="width:100%"></div>
 </div>
