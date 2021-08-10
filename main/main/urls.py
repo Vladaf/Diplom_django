@@ -9,7 +9,6 @@ urlpatterns = [
     path("user/", include("user.urls")),
     path("catalog/", include("catalog.urls")),
     path("private/", include("private.urls")),
-    path("player/", include("player.urls")),
     path("", include("home.urls")),
 ]
 urlpatterns += staticfiles_urlpatterns()
