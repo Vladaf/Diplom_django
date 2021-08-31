@@ -1,7 +1,4 @@
-<div class="app-body" id="view">
-
-    <!-- ############ PAGE START-->
-    
+<div class="app-body" id="view">    
     <div class="page-content">
       <div class="row-col">
         <div class="col-lg-9 b-r no-border-md">
@@ -29,8 +26,8 @@
                 nextSelector: 'a.jscroll-next:last'
               }">
               <div class="row row-lg">
-                {% if artist_list %}
-                    {% for artist in artist_list %}
+                {% if artist_info %}
+                    {% for artist in artist_info %}
                         <div class="col-xs-4 col-sm-4 col-md-3">
                             <div class="item">
                                 <div class="item-media rounded ">
@@ -38,8 +35,8 @@
                                 </div>
                                 <div class="item-info text-center">
                                     <div class="item-title text-ellipsis">
-                                        <a href="">{{ artist.username }}</a>
-                                        <div class="text-sm text-muted">{{counter}}</div>
+                                        <a href="">{{ artist.0.username }}</a>
+                                          <div class="text-sm text-muted">{{artist.1}} tracks</div>
                                     </div>
                                 </div>
                             </div>
@@ -53,8 +50,5 @@
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- ############ PAGE END-->
-    
+    </div>    
 </div>
