@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls.base import reverse
 from django.views.generic.list import ListView
 from private.forms import UploadForm
-from private.models import Song
+from private.models import Song, Genre
 from user.models import User
 
 def profile(request):
@@ -18,8 +18,19 @@ def discover(request):
     context = {"name_page": "discover"}
     return render(request, "discover.html", context)
 
-def browse(request):
-    context = {"name_page": "browse"}
+def browse(request, genre_name):
+    genres_list = Genre.objects.all()
+    if genre_name == 'all':
+        genre_now = 'All'
+        music_list = Song.objects.all()    
+    else:
+        genre_now = Genre.objects.get(name = genre_name)
+        music_list = Song.objects.filter(genre = genre_now.id)
+    context = {
+            "genres_list": genres_list,
+            "genre_now": genre_now,
+            "music_list": music_list,
+            }
     return render(request, "browse.html", context)
 
 def charts(request):
