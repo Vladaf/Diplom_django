@@ -16,7 +16,6 @@
                     <h1 class="page-title">
                         <span class="h1 _800">{{ user.username }}</span>
                     </h1>
-                    <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quamquam tu hanc copiosiorem etiam soles dicere. Nihil illinc huc pervenit. Verum hoc idem saepe faciamus. Quid ad utilitatem tantae pecuniae? Utram tandem linguam nescio? Sed hoc sane concedamus.</p>
                     <div class="item-action m-b">
                         <a href="{% url 'upload_page' %}" class="btn btn-sm rounded primary">Upload</a>
                         <a href="#" class="btn btn-sm rounded white">Edit Profile</a>
@@ -70,16 +69,18 @@
                                                         <a href="">{{ track.name }}</a>
                                                     </div>
                                                     <div class="item-author text-sm text-ellipsis">
-                                                        <a href="" class="text-muted">{{ track.band }}</a>
+                                                        <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>
                                                     </div>
                                                     <div class="item-meta text-sm text-muted">
                                                         <span class="item-meta-category"><a href="" class="label">{{ track.genre }}</a></span>
                                                         <span class="item-meta-date text-xs">{{ track.post_date }}</span>
                                                     </div>
-                                    
-                                                    <div class="item-except visible-list text-sm text-muted h-2x m-t-sm">
+                                                    <div class="item-meta text-sm text-muted">
+                                                        <span class="item-meta-stats text-xs  item-meta-right">
+                                                            <i class="fa fa-play text-muted"></i> 860 
+                                                            <i class="fa fa-heart m-l-sm text-muted"></i> 240
+                                                        </span>
                                                     </div>
-                                    
                                                     <div class="item-action visible-list m-t-sm">
                                                         <a href="#" class="btn btn-xs white">Edit</a>
                                                         <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#delete-modal">Delete</a>
@@ -260,23 +261,12 @@
                         <div class="tab-pane" id="profile">
                             <form>
                                 <div class="form-group row">
-                                <div class="col-sm-3 form-control-label text-muted">Location</div>
-                                <div class="col-sm-9"><input value="Earth" class="form-control"></div>
+                                    <div class="col-sm-3 form-control-label text-muted">Location</div>
+                                    <div class="col-sm-9"><input value="Earth" class="form-control"></div>
                                 </div>
                                 <div class="form-group row">
-                                <div class="col-sm-3 form-control-label text-muted">Website</div>
-                                <div class="col-sm-9"><input placeholder="http://" class="form-control"></div>
-                                </div>
-                                <div class="form-group row">
-                                <div class="col-sm-3 form-control-label text-muted">Music Type</div>
-                                <div class="col-sm-9">
-                                    <select class="form-control c-select">
-                                        <option>Blue</option>
-                                        <option>Electro</option>
-                                        <option>Pop</option>
-                                        <option>Soul</option>
-                                    </select>
-                                </div>
+                                    <div class="col-sm-3 form-control-label text-muted">Website</div>
+                                    <div class="col-sm-9"><input placeholder="http://" class="form-control"></div>
                                 </div>
                             </form>
                         </div>

@@ -31,12 +31,12 @@
                         <div class="col-xs-4 col-sm-4 col-md-3">
                             <div class="item">
                                 <div class="item-media rounded ">
-                                    <a href="artist.detail.html" class="item-media-content" style="background-image: url('images/a4.jpg');"></a>
+                                    <a href="{% url 'artists_detail_page' artist_name=artist.0.username %}" class="item-media-content" style="background-image: url('images/a4.jpg');"></a>
                                 </div>
                                 <div class="item-info text-center">
                                     <div class="item-title text-ellipsis">
-                                        <a href="">{{ artist.0.username }}</a>
-                                          <div class="text-sm text-muted">{{artist.1}} tracks</div>
+                                        <a href="{% url 'artists_detail_page' artist_name=artist.0.username %}">{{ artist.0.username }}</a>
+                                        <div class="text-sm text-muted">{{artist.1}} Tracks</div>
                                     </div>
                                 </div>
                             </div>

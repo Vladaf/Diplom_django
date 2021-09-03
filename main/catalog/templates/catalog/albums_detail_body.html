@@ -1,0 +1,73 @@
+<div class="app-body" id="view">
+    <div class="page-content">
+        <div class="row-col">
+            <div class="col-lg-9 b-r no-border-md">
+                <div class="padding">
+                    <div class="padding b-b">
+                        <div class="row-col">
+                            <div class="col-sm w w-auto-xs m-b">
+                                <div class="item w rounded">
+                                    <div class="item-media">
+                                        <div class="item-media-content" style="background-image: url('{{ album_detail.0.picture.url }}');"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="p-l-md no-padding-xs">
+                                    <h1 class="page-title">
+                                        <span class="h1 _800">{{ album_name }}</span>
+                                    </h1>
+                                    <div class="block clearfix m-b">
+                                        <span class="text-muted">{{ songs_count }} Tracks</span>
+                                    </div>
+                                    <div class="block clearfix m-b">
+                                        {% for genre in genres_set %}
+                                            <a class="btn btn-xs rounded white">{{ genre }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row item-list item-list-md item-list-li m-b">
+                        {% for track in album_detail %}
+                            <div class="col-xs-12">
+                                <div class="item r" data-id="{{ track.id }}" data-src="{{ track.audio.url }}">
+                                    <div class="item-media ">
+                                        <a href="" class="item-media-content" style="background-image: url('{{track.picture.url}}');"></a>
+                                        <div class="item-overlay center">
+                                            <button  class="btn-playpause">Play</button>
+                                        </div>
+                                    </div>
+                                    <div class="item-info">
+                                        <div class="item-overlay bottom text-right">
+                                            <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
+                                            <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu pull-right black lt"></div>
+                                        </div>
+                                        <div class="item-title text-ellipsis">
+                                            <a href="">{{ track.name }}</a>
+                                        </div>
+                                        <div class="item-author text-sm text-ellipsis ">
+                                            <a href="" class="text-muted">{{ track.band }}</a>
+                                        </div>
+                                        <div class="item-meta text-sm text-muted">
+                                            <span class="item-meta-category"><a href="" class="label">{{ track.genre }}</a></span>
+                                            <span class="item-meta-date text-xs">{{ track.post_date }}</span>
+                                        </div>
+                                        <div class="item-meta text-sm text-muted">
+                                            <span class="item-meta-stats text-xs  item-meta-right">
+                                                <i class="fa fa-play text-muted"></i> 860 
+                                                <i class="fa fa-heart m-l-sm text-muted"></i> 240
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
