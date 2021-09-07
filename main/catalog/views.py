@@ -41,8 +41,7 @@ def artists(request):
     artist_list = User.objects.filter(is_musician = True)
     counter = []
     for artist in artist_list:
-        track_list = Song.objects.filter(band = artist)
-        count = len(track_list)
+        count = Song.objects.filter(band = artist).count()
         counter.append(count)
     artist_info = zip(artist_list, counter)
     context = {"artist_info": artist_info}
@@ -53,7 +52,7 @@ def artists_detail(request, artist_name):
     if artist_detail:
         music_detail = Song.objects.filter(band = artist_name)
 
-        songs_count = len(music_detail)
+        songs_count = music_detail.count()
 
         albums_set = set()
         for song in music_detail:

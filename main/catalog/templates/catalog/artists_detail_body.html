@@ -229,9 +229,11 @@
                                             <a href="#" class="text-muted">{{ track.band }}</a>
                                         </div>
                                         <div class="item-meta text-sm text-muted">
-                                          <span class="item-meta-stats text-xs ">
-                                              <i class="fa fa-play text-muted"></i> 30 
-                                              <i class="fa fa-heart m-l-sm text-muted"></i> 10
+                                          <span class="item-meta-stats text-xs">
+                                              <button type="submit"> 
+                                                <i class="fa fa-play text-muted"></i> 30
+                                              </button>
+                                              {% include 'add_like_blog.html' with song_post_id=track.id %}
                                           </span>
                                         </div>
                                     </div>

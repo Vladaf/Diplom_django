@@ -74,8 +74,10 @@
                                                     </div>
                                                     <div class="item-meta text-sm text-muted">
                                                         <span class="item-meta-stats text-xs  item-meta-right">
-                                                            <i class="fa fa-play text-muted"></i> 860 
-                                                            <i class="fa fa-heart m-l-sm text-muted"></i> 240
+                                                            <button type="submit"> 
+                                                                <i class="fa fa-play text-muted"></i> 860
+                                                              </button> 
+                                                            {% include 'add_like_blog.html' with song_post_id=track.id %}
                                                         </span>
                                                     </div>
                                                     <div class="item-action visible-list m-t-sm">

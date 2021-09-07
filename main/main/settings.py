@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user',
     'catalog',
     'private',
+    'likes',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

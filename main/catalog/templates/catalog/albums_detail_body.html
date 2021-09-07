@@ -56,9 +56,11 @@
                                             <span class="item-meta-date text-xs">{{ track.post_date }}</span>
                                         </div>
                                         <div class="item-meta text-sm text-muted">
-                                            <span class="item-meta-stats text-xs  item-meta-right">
-                                                <i class="fa fa-play text-muted"></i> 860 
-                                                <i class="fa fa-heart m-l-sm text-muted"></i> 240
+                                            <span class="item-meta-stats text-xs item-meta-right">
+                                                <button type="submit"> 
+                                                    <i class="fa fa-play text-muted"></i> 860
+                                                </button> 
+                                                {% include 'add_like_blog.html' with song_post_id=track.id %}
                                             </span>
                                         </div>
                                     </div>

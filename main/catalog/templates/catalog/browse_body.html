@@ -48,7 +48,6 @@
                         </div>
                         <div class="item-info">
                           <div class="item-overlay bottom text-right">
-                            <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
                             <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
                             <div class="dropdown-menu pull-right black lt"></div>
                           </div>
@@ -57,6 +56,14 @@
                           </div>
                           <div class="item-author text-sm text-ellipsis ">
                             <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>
+                          </div>
+                          <div class="item-meta text-sm text-muted">
+                            <span class="item-meta-stats text-xs item-meta-right">
+                              <button type="submit"> 
+                                <i class="fa fa-play text-muted"></i> 30
+                              </button>  
+                              {% include 'add_like_blog.html' with song_post_id=track.id %}
+                            </span>
                           </div>
                         </div>
                       </div>
