@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render
 from django.urls.base import reverse
+from datetime import datetime, date, time, timedelta
 from django.views.generic.list import ListView
 from private.forms import UploadForm
 from private.models import Song, Genre
 from user.models import User
+
 
 def profile(request):
     context = {"name_page": "profile"}
@@ -14,9 +16,11 @@ def profile(request):
     else:
         return redirect(reverse("signin_page"))
 
+
 def discover(request):
     context = {"name_page": "discover"}
     return render(request, "discover.html", context)
+
 
 def browse(request, genre_name):
     genres_list = Genre.objects.all()
@@ -33,9 +37,31 @@ def browse(request, genre_name):
             }
     return render(request, "browse.html", context)
 
-def charts(request):
-    context = {"name_page": "charts"}
+
+def charts(request, chart_name):
+    date_live = date.today()
+    if chart_name == 'all_the_time':
+        chart_now = 'All the time'
+        charts_list = Song.objects.all()
+    elif chart_name == 'last_week':
+        past_date = date_live - timedelta(days=7)
+        chart_now = 'Last week'
+        charts_list = Song.objects.filter(post_date__range=[past_date, date_live])
+    elif chart_name == 'last_month':
+        past_date = date_live - timedelta(days=30)
+        chart_now = 'Last month'
+        charts_list = Song.objects.filter(post_date__range=[past_date, date_live])
+    else:
+        past_date = date_live - timedelta(days=365)
+        chart_now = 'Last year'
+        charts_list = Song.objects.filter(post_date__range=[past_date, date_live])
+        
+    context = {
+        "chart_now": chart_now,
+        "charts_list": charts_list,
+        }
     return render(request, "charts.html", context)
+
 
 def artists(request):
     artist_list = User.objects.filter(is_musician = True)
@@ -46,6 +72,7 @@ def artists(request):
     artist_info = zip(artist_list, counter)
     context = {"artist_info": artist_info}
     return render(request, "artists.html", context)
+
 
 def artists_detail(request, artist_name):
     artist_detail = User.objects.get(username = artist_name)
@@ -81,6 +108,7 @@ def artists_detail(request, artist_name):
         return render(request, "artists_detail.html", context)
     else:
         return redirect(reverse("home_page"))
+
 
 def albums_detail(request, artist_name, album_name):
     artist_detail = User.objects.get(username = artist_name)
