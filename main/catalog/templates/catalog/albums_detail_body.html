@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="block clearfix m-b">
                                         {% for genre in genres_set %}
-                                            <a class="btn btn-xs rounded white">{{ genre }}</a>
+                                            <a class="btn btn-xs rounded white" href="{% url 'browse_page' genre_name=genre %}">{{ genre }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -52,15 +52,15 @@
                                             <a href="" class="text-muted">{{ track.band }}</a>
                                         </div>
                                         <div class="item-meta text-sm text-muted">
-                                            <span class="item-meta-category"><a href="" class="label">{{ track.genre }}</a></span>
+                                            <span class="item-meta-category"><a href="{% url 'browse_page' genre_name=track.genre %}" class="label">{{ track.genre }}</a></span>
                                             <span class="item-meta-date text-xs">{{ track.post_date }}</span>
                                         </div>
                                         <div class="item-meta text-sm text-muted">
                                             <span class="item-meta-stats text-xs item-meta-right">
                                                 <button type="submit"> 
-                                                    <i class="fa fa-play text-muted"></i> 860
+                                                    <i class="fa fa-play text-muted"></i> {{ track.counter }}
                                                 </button> 
-                                                {% include 'add_like_blog.html' with song_post_id=track.id %}
+                                                {% include 'add_like.html' with song_post_id=track.id %}
                                             </span>
                                         </div>
                                     </div>

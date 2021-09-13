@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.db.models.fields.related import ForeignKey
 
 
@@ -35,6 +36,11 @@ class Song(models.Model):
     picture = models.ImageField(
         verbose_name = "Picture",
     )
+    counter = models.IntegerField(
+        default = 0,
+        verbose_name = "Listening counter",
+    )
+    
     class Meta:
         db_table = "songs"
 

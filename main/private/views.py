@@ -3,12 +3,16 @@ from django.urls.base import reverse
 from django.views.generic.list import ListView
 from private.forms import UploadForm
 from private.models import Song
+from likes.models import SongLikes
 
 def profile(request):
-    context = {"name_page": "profile"}
     if request.user.is_authenticated:
-        track_list = Song.objects.filter(post_author__exact = request.user.username)
-        context = {"track_list": track_list}
+        track_list = Song.objects.filter(post_author = request.user.username)
+        likes = SongLikes.objects.filter(liked_by = request.user.id)
+        likes_list = []
+        for like in likes:
+            likes_list.append(like.song_post)
+        context = {"track_list": track_list, "likes_list": likes_list}
         return render(request, "profile.html", context)
     else:
         return redirect(reverse("signin_page"))
@@ -25,3 +29,4 @@ def upload(request):
         else:
             context["upload_form"] = upload_form
     return render(request, "upload.html", context)
+    

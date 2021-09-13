@@ -4,6 +4,7 @@ from datetime import datetime, date, time, timedelta
 from django.views.generic.list import ListView
 from private.forms import UploadForm
 from private.models import Song, Genre
+from likes.models import SongLikes
 from user.models import User
 
 
@@ -91,7 +92,15 @@ def artists_detail(request, artist_name):
         albums_picture = []
         for album in albums_:
             albums_picture.append(album.picture.url)
-        albums_detail = zip(albums_set, albums_picture)
+        albums_likes = []
+        for album_ in albums_set:    
+            album_music = Song.objects.filter(album = album_)
+            counter = 0
+            for song in album_music:
+                track_likes = SongLikes.objects.filter(song_post = song).count()
+                counter = counter + track_likes
+            albums_likes.append(counter)
+        albums_detail = zip(albums_set, albums_picture, albums_likes)
 
         genres_set = set()
         for song in music_detail:

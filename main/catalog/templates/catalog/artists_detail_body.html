@@ -24,7 +24,7 @@
                 </div>
                 <div class="block clearfix m-b">
                     {% for genre in genres_set %}
-                        <a class="btn btn-xs rounded white">{{ genre }}</a>
+                        <a class="btn btn-xs rounded white" href="{% url 'browse_page' genre_name=genre %}">{{ genre }}</a>
                     {% endfor %}
                 </div>
               </div>
@@ -189,7 +189,7 @@
                                     <div class="item-meta text-sm text-muted">
                                         <span class="item-meta-stats text-xs ">
                                             <i class="fa fa-play text-muted"></i> 200 
-                                            <i class="fa fa-heart m-l-sm text-muted"></i> 510
+                                            <i class="fa fa-heart m-l-sm text-muted"></i> {{ album.2 }}
                                         </span>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                                             <div class="dropdown-menu pull-right black lt"></div>
                                         </div>
                                         <div class="block clearfix m-b" style="position: absolute; right: 0;">
-                                          <a class="btn btn-xs rounded white" >{{ track.genre }}</a>
+                                          <a class="btn btn-xs rounded white" href="{% url 'browse_page' genre_name=track.genre %}">{{ track.genre }}</a>
                                         </div>
                                         <div class="item-title text-ellipsis">
                                             <a href="#">{{ track.name }}</a>
@@ -231,9 +231,9 @@
                                         <div class="item-meta text-sm text-muted">
                                           <span class="item-meta-stats text-xs">
                                               <button type="submit"> 
-                                                <i class="fa fa-play text-muted"></i> 30
+                                                <i class="fa fa-play text-muted"></i> {{ track.counter }}
                                               </button>
-                                              {% include 'add_like_blog.html' with song_post_id=track.id %}
+                                              {% include 'add_like.html' with song_post_id=track.id %}
                                           </span>
                                         </div>
                                     </div>
