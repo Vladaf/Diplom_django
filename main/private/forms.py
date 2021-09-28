@@ -7,7 +7,7 @@ class UploadForm(forms.ModelForm):
     class Meta:
         model = Song
         fields = "__all__"
-        exclude = ["post_author"]
+        exclude = ["post_author", "counter"]
         widgets = {
             "band": forms.TextInput(
                 attrs = {
@@ -55,6 +55,54 @@ class UploadForm(forms.ModelForm):
                     "id": "picture",
                     "placeholder": "Picture File",
                     "data-error": "Please upload Picture File",
+                }
+            ),
+        }
+
+class PlaylistForm(forms.ModelForm):
+    class Meta:
+        model = Playlist
+        fields = "__all__"
+        exclude = ["playlist_author"]
+        widgets = {
+            "name": forms.TextInput(
+                attrs = {
+                    "class": "form-control",
+                    "id": "name",
+                    "placeholder": "name",
+                    "data-error": "Please enter Playlist Name",
+                }
+            ),
+            "picture": forms.FileInput(
+                attrs = {
+                    "class": "form-control",
+                    "id": "picture",
+                    "placeholder": "Picture File",
+                    "data-error": "Please upload Picture File",
+                }
+            ),
+        }
+
+class SongPlaylistForm(forms.ModelForm):
+    class Meta:
+        model = SongPlaylist
+        fields = "__all__"
+        #exclude = ["song"]
+        widgets = {
+            "song": forms.Select(
+                attrs = {
+                    "class": "form-control",
+                    "id": "song",
+                    "placeholder": "Choose song",
+                    "data-error": "Please enter Song",
+                }
+            ),
+            "playlist": forms.Select(
+                attrs = {
+                    "class": "form-control",
+                    "id": "playlist",
+                    "placeholder": "Choose playlist",
+                    "data-error": "Please enter Playlist",
                 }
             ),
         }

@@ -59,10 +59,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-info">
-                                                    <div class="item-overlay bottom text-right">
-                                                        <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                                        <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu pull-right black lt"></div>
+                                                    <div class="bottom text-right">
+                                                        <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#playlist-modal"><i class="fa fa-music fa-fw text-left"></i> Add to Playlist</a>
+                                                        <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
+                                                        <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                                                     </div>
                                                     <div class="item-title text-ellipsis">
                                                         <a href="">{{ track.name }}</a>
@@ -73,12 +73,6 @@
                                                     <div class="item-meta text-sm text-muted">
                                                         <span class="item-meta-category"><a href="" class="label">{{ track.genre }}</a></span>
                                                         <span class="item-meta-date text-xs">{{ track.post_date }}</span>
-                                                    </div>
-                                                    <div class="item-meta text-sm text-muted">
-                                                        <span class="item-meta-stats text-xs  item-meta-right">
-                                                            <i class="fa fa-play text-muted"></i> {{ track.counter }}
-                                                            {% include 'add_like.html' with song_post_id=track.id %}
-                                                        </span>
                                                     </div>
                                                     <div class="item-action visible-list m-t-sm">
                                                         <a href="#" class="btn btn-xs white">Edit</a>
@@ -96,99 +90,38 @@
                         </div>
                         <div class="tab-pane" id="playlist">
                             <div class="row m-b">
-                                    <div class="col-xs-4 col-sm-4 col-md-3">
-                                    <div class="item r" data-id="item-2" data-src="http://api.soundcloud.com/tracks/259445397/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
+                                <div class="col-xs-4 col-sm-4 col-md-3">
+                                    <div class="item r" data-id="{{ playlist.id }}">
                                         <div class="item-media ">
-                                            <a href="track.detail.html" class="item-media-content" style="background-image: url('images/b1.jpg');"></a>
+                                            <a href="{% url 'playlist_page' %}" class="item-media-content" style="background-image: url('{{playlist.picture.url}}');"></a>
                                             <div class="item-overlay center">
-                                                <button  class="btn-playpause">Play</button>
+                                                <a href="{% url 'playlist_page' %}" class="btn btn-sm rounded primary">Create</a>
                                             </div>
                                         </div>
                                         <div class="item-info">
-                                            <div class="item-overlay bottom text-right">
-                                                <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                                <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                                <div class="dropdown-menu pull-right black lt"></div>
-                                            </div>
                                             <div class="item-title text-ellipsis">
-                                                <a href="track.detail.html">Fireworks</a>
-                                            </div>
-                                            <div class="item-author text-sm text-ellipsis hide">
-                                                <a href="artist.detail.html" class="text-muted">Kygo</a>
-                                            </div>
-                                            <div class="item-meta text-sm text-muted">
-                                                <span class="item-meta-stats text-xs ">
-                                                <i class="fa fa-play text-muted"></i> 30 
-                                                <i class="fa fa-heart m-l-sm text-muted"></i> 10
-                                                </span>
-                                            </div>
-                                
-                                
+                                                <a href="">Add New Playlist</a>
+                                            </div>  
                                         </div>
                                     </div>
                                 </div>
+                                {% for playlist in playlist_list %}    
                                     <div class="col-xs-4 col-sm-4 col-md-3">
-                                    <div class="item r" data-id="item-10" data-src="http://api.soundcloud.com/tracks/237514750/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
-                                        <div class="item-media ">
-                                            <a href="track.detail.html" class="item-media-content" style="background-image: url('images/b9.jpg');"></a>
-                                            <div class="item-overlay center">
-                                                <button  class="btn-playpause">Play</button>
+                                        <div class="item r" data-id="{{ playlist.id }}">
+                                            <div class="item-media ">
+                                                <a href="{% url 'playlist_detail_page' user_name=user.username playlist_name=playlist.name %}" class="item-media-content" style="background-image: url('{{playlist.picture.url}}');"></a>
+                                                <div class="item-overlay center">
+                                                    <button class="btn-playpause">Play</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="item-overlay bottom text-right">
-                                                <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                                <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                                <div class="dropdown-menu pull-right black lt"></div>
+                                            <div class="item-info">
+                                                <div class="item-title text-ellipsis">
+                                                    <a href="">{{ playlist.name }}</a>
+                                                </div>  
                                             </div>
-                                            <div class="item-title text-ellipsis">
-                                                <a href="track.detail.html">The Open Road</a>
-                                            </div>
-                                            <div class="item-author text-sm text-ellipsis hide">
-                                                <a href="artist.detail.html" class="text-muted">Postiljonen</a>
-                                            </div>
-                                            <div class="item-meta text-sm text-muted">
-                                                <span class="item-meta-stats text-xs ">
-                                                <i class="fa fa-play text-muted"></i> 860 
-                                                <i class="fa fa-heart m-l-sm text-muted"></i> 240
-                                                </span>
-                                            </div>
-                                
-                                
                                         </div>
                                     </div>
-                                </div>
-                                    <div class="col-xs-4 col-sm-4 col-md-3">
-                                    <div class="item r" data-id="item-1" data-src="http://api.soundcloud.com/tracks/269944843/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
-                                        <div class="item-media ">
-                                            <a href="track.detail.html" class="item-media-content" style="background-image: url('images/b0.jpg');"></a>
-                                            <div class="item-overlay center">
-                                                <button  class="btn-playpause">Play</button>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="item-overlay bottom text-right">
-                                                <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                                <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                                <div class="dropdown-menu pull-right black lt"></div>
-                                            </div>
-                                            <div class="item-title text-ellipsis">
-                                                <a href="track.detail.html">Pull Up</a>
-                                            </div>
-                                            <div class="item-author text-sm text-ellipsis hide">
-                                                <a href="artist.detail.html" class="text-muted">Summerella</a>
-                                            </div>
-                                            <div class="item-meta text-sm text-muted">
-                                                <span class="item-meta-stats text-xs ">
-                                                <i class="fa fa-play text-muted"></i> 3200 
-                                                <i class="fa fa-heart m-l-sm text-muted"></i> 210
-                                                </span>
-                                            </div>
-                                
-                                
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="tab-pane" id="like">
@@ -364,6 +297,26 @@
                     <a href="#" class="nav-link text-muted m-r-xs">Policy</a>
                     </div>
                     <p class="text-muted text-xs p-b-lg">&copy; Copyright 2016</p>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div id="playlist-modal" class="modal fade animate black-overlay" data-backdrop="false">
+        <div class="row-col h-v">
+            <div class="row-cell v-m">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content flip-y">
+                        <form name="form" action="" method="POST">
+                            {% csrf_token %}
+                            <div class="modal-body">         
+                                {{songplaylist_form}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn green p-x-md">Save</button>
+                                <button type="submit" class="btn red p-x-md" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

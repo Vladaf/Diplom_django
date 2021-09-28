@@ -47,9 +47,10 @@
                             </div>
                           </div>
                           <div class="item-info">
-                            <div class="item-overlay bottom text-right">
-                              <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                              <div class="dropdown-menu pull-right black lt"></div>
+                            <div class="bottom text-right">
+                              <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#playlist-modal"><i class="fa fa-music fa-fw text-left"></i> Add to Playlist</a>
+                              <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
+                              <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                             </div>
                             {% if genre_now == 'All' %}
                               <div class="block clearfix m-b" style="position: absolute; right: 0;">
@@ -61,14 +62,6 @@
                             </div>
                             <div class="item-author text-sm text-ellipsis ">
                               <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>
-                            </div>
-                            <div class="item-meta text-sm text-muted">
-                              <span class="item-meta-stats text-xs item-meta-right">
-                                <button type="submit"> 
-                                  <i class="fa fa-play text-muted"></i> 30
-                                </button>  
-                                {% include 'add_like.html' with song_post_id=track.id %}
-                              </span>
                             </div>
                           </div>
                         </div>

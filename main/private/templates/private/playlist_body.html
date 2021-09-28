@@ -17,6 +17,7 @@
                             <span class="h1 _800">{{ user.username }}</span>
                         </h1>
                         <div class="item-action m-b">
+                            <a href="{% url 'upload_page' %}" class="btn btn-sm rounded primary">Upload</a>
                             <a href="#" class="btn btn-sm rounded white">Edit Profile</a>
                         </div>
                     </div>
@@ -27,10 +28,10 @@
             <div class="col-lg-9 b-r no-border-md">
                 <div class="padding p-y-0 m-b-md">
                     <div class="tab-content">
-                        <form name="form" action="" method="POST">
+                        <form name="form" action="" method="post">
                             {% csrf_token %}
-                            {{upload_form}}
-                            <button type="submit" class="btn btn-lg black p-x-lg">Upload</button>
+                            {{playlist_form}}
+                            <button type="submit" class="btn btn-lg black p-x-lg">Create</button>
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block catalog %}
+    {% include 'base/aside.html' %}
+    <div id="content" class="app-content white bg box-shadow-z2" role="main">
+        {% include 'base/header.html' %}
+        {% include 'base/player.html' %}
+        {% include 'catalog/playlist_detail_body.html' %}
+    </div>
+    {% include 'base/search.html' %}
+    {% include 'base/share.html' %}
+{% endblock catalog %}

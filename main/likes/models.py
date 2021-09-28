@@ -7,7 +7,7 @@ from private.models import Song
 class SongLikes(models.Model):
     song_post = models.ForeignKey(
         Song,
-        on_delete = models.SET_NULL,
+        on_delete = models.CASCADE,
         null = True,
         verbose_name = "Song like",
     )

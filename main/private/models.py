@@ -40,7 +40,6 @@ class Song(models.Model):
         default = 0,
         verbose_name = "Listening counter",
     )
-    
     class Meta:
         db_table = "songs"
 
@@ -55,3 +54,39 @@ class Genre(models.Model):
         db_table = "genres"
     def __str__(self):
         return self.name
+
+class Playlist(models.Model):
+    playlist_author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete = models.SET_NULL,
+        null = True,
+        verbose_name = "Playlist author",
+    )
+    name = models.CharField(
+        max_length = 50,
+    )
+    picture = models.ImageField(
+        verbose_name = "Picture",
+    )
+    class Meta:
+        db_table = "playlist"
+    def __str__(self):
+        return f'{self.playlist_author}: {self.name}'
+
+class SongPlaylist(models.Model):
+    song = models.ForeignKey(
+        Song,
+        on_delete = models.CASCADE,
+        null = True,
+        verbose_name = "Song",
+    )
+    playlist = models.ForeignKey(
+        Playlist,
+        on_delete = models.CASCADE,
+        null = True,
+        verbose_name = "Playlist",
+    )
+    class Meta:
+        db_table = "songplaylist"
+    def __str__(self):
+        return f'{self.playlist} - {self.song}'

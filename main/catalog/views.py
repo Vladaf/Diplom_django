@@ -3,7 +3,7 @@ from django.urls.base import reverse
 from datetime import datetime, date, time, timedelta
 from django.views.generic.list import ListView
 from private.forms import UploadForm
-from private.models import Song, Genre
+from private.models import *
 from likes.models import SongLikes
 from user.models import User
 
@@ -129,7 +129,6 @@ def albums_detail(request, artist_name, album_name):
     for song in album_detail:
         genres_set.add(song.genre)
 
-
     context = {
         "artist_detail": artist_detail,
         "album_detail": album_detail,
@@ -138,3 +137,26 @@ def albums_detail(request, artist_name, album_name):
         "genres_set": genres_set,
         }
     return render(request, "albums_detail.html", context)
+
+def playlist_detail(request, user_name, playlist_name):
+    user = User.objects.get(username = user_name)
+    playlist = Playlist.objects.get(playlist_author = user.id, name = playlist_name)
+    playlist_ = SongPlaylist.objects.filter(playlist = playlist.id)
+    playlist_list = []
+    for song in playlist_:
+        playlist_list.append(song.song)
+
+    songs_count = len(playlist_list)
+
+    genres_set = set()
+    for song in playlist_:
+        genres_set.add(song.song.genre)
+
+    context = {
+        "playlist": playlist,
+        "playlist_list": playlist_list,
+        "user_name": user_name,
+        "songs_count": songs_count,
+        "genres_set": genres_set,
+        }
+    return render(request, "playlist_detail.html", context)
