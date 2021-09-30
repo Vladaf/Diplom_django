@@ -1,0 +1,25 @@
+<a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#playlist-modal-song{{ song_post_id }}"><i class="fa fa-music fa-fw text-left"></i> Add to Playlist</a>
+<div id="playlist-modal-song{{ song_post_id }}" class="modal fade animate black-overlay" data-backdrop="false">
+    <div class="row-col h-v">
+        <div class="row-cell v-m">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content flip-y">
+                    <form action="{% url 'add_to_playlist_page' %}" method="POST">{% csrf_token %}
+                        <input type="hidden" name="song_post_id" value="{{ song_post_id }}">
+                        <input type="hidden" name="url_form" value="{{ request.path }}">
+                                
+                        <div class="modal-body">
+                            <div>Song id: {{ song_post_id }}</div>         
+                            {{songplaylist_form}}
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn green p-x-md">Save</button>
+                            <button type="submit" class="btn red p-x-md" data-dismiss="modal">Close</button>
+                        </div>                   
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

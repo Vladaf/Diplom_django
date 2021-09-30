@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from django.urls.base import reverse
+from django.views.generic import View
 from django.views.generic.list import ListView
 from private.forms import *
 from private.models import *
+from user.models import User
 from likes.models import SongLikes
 
 def profile(request):
@@ -13,17 +15,11 @@ def profile(request):
         likes_list = []
         for like in likes:
             likes_list.append(like.song_post)
-        if request.method == "POST":
-            songplaylist_form = SongPlaylistForm(request.POST)
-            if songplaylist_form.is_valid():
-                #playlist = songplaylist_form.save(commit = False)
-                #playlist.song = Song.objects.get()
-                songplaylist_form.save()
         context = {
             "track_list": track_list,
             "playlist_list": playlist_list,
             "likes_list": likes_list,
-            "songplaylist_form": SongPlaylistForm()
+            "songplaylist_form": SongPlaylistForm(),
             }        
         return render(request, "profile.html", context)
     else:
@@ -54,3 +50,20 @@ def playlist(request):
         else:
             context["playlist_form"] = playlist_form
     return render(request, "playlist.html", context)
+
+class AddToPlaylistView(View):
+    def post(self, request, *args, **kwargs):
+        song_post_id = int(request.POST.get('song_post_id'))
+        playlist_id = int(request.POST.get('playlist'))
+        url_form = request.POST.get('url_form')
+
+        song_post_inst = Song.objects.get(id = song_post_id)
+        playlist_choice_inst = Playlist.objects.get(id = playlist_id)
+
+        try:
+            song_playlist_inst = SongPlaylist.objects.get(song = song_post_inst, playlist = playlist_choice_inst)
+        except Exception as e:
+            add_playlist = SongPlaylist(song = song_post_inst, playlist = playlist_choice_inst)
+            add_playlist.save()
+
+        return redirect(url_form)

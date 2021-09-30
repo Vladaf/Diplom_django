@@ -48,7 +48,7 @@
                           </div>
                           <div class="item-info">
                             <div class="bottom text-right">
-                              <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#playlist-modal"><i class="fa fa-music fa-fw text-left"></i> Add to Playlist</a>
+                              <div>{% include 'add_to_playlist.html' with song_post_id=track.id songplaylist_form=songplaylist_form %}</div>
                               <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
                               <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                             </div>

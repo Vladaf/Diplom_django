@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls.base import reverse
 from datetime import datetime, date, time, timedelta
 from django.views.generic.list import ListView
-from private.forms import UploadForm
+from private.forms import *
 from private.models import *
 from likes.models import SongLikes
 from user.models import User
@@ -35,6 +35,7 @@ def browse(request, genre_name):
             "genres_list": genres_list,
             "genre_now": genre_now,
             "music_list": music_list,
+            "songplaylist_form": SongPlaylistForm(),
             }
     return render(request, "browse.html", context)
 

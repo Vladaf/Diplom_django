@@ -60,7 +60,7 @@
                                                 </div>
                                                 <div class="item-info">
                                                     <div class="bottom text-right">
-                                                        <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#playlist-modal"><i class="fa fa-music fa-fw text-left"></i> Add to Playlist</a>
+                                                        <div>{% include 'add_to_playlist.html' with song_post_id=track.id songplaylist_form=songplaylist_form %}</div>
                                                         <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
                                                         <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                                                     </div>
@@ -297,26 +297,6 @@
                     <a href="#" class="nav-link text-muted m-r-xs">Policy</a>
                     </div>
                     <p class="text-muted text-xs p-b-lg">&copy; Copyright 2016</p>
-                </div>
-            </div>
-        </div>
-	</div>
-    <div id="playlist-modal" class="modal fade animate black-overlay" data-backdrop="false">
-        <div class="row-col h-v">
-            <div class="row-cell v-m">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content flip-y">
-                        <form name="form" action="" method="POST">
-                            {% csrf_token %}
-                            <div class="modal-body">         
-                                {{songplaylist_form}}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn green p-x-md">Save</button>
-                                <button type="submit" class="btn red p-x-md" data-dismiss="modal">Close</button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>

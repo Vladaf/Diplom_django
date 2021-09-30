@@ -87,16 +87,8 @@ class SongPlaylistForm(forms.ModelForm):
     class Meta:
         model = SongPlaylist
         fields = "__all__"
-        #exclude = ["song"]
+        exclude = ["song"]
         widgets = {
-            "song": forms.Select(
-                attrs = {
-                    "class": "form-control",
-                    "id": "song",
-                    "placeholder": "Choose song",
-                    "data-error": "Please enter Song",
-                }
-            ),
             "playlist": forms.Select(
                 attrs = {
                     "class": "form-control",
