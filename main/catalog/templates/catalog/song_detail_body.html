@@ -1,0 +1,104 @@
+<div class="app-body" id="view">
+	<div class="page-bg" data-stellar-ratio="2" style="background-image: url('images/a3.jpg');">
+    </div>
+	<div class="page-content">
+        <div class="padding b-b">
+            <div class="row-col">
+                <div class="col-sm w w-auto-xs m-b">
+                    <div class="item w rounded">
+                    <div class="item-media">
+                        <div class="item-media-content" style="background-image: url('{{track.picture.url}}');"></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="p-l-md no-padding-xs">
+                        <h1 class="page-title">
+                            <span class="h1 _800">{{ track.band }} - {{ track.name }}</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-col">
+            <div class="col-lg-9 b-r no-border-md">
+                <div class="padding p-y-0 m-b-md">
+                    <div class="nav-active-border b-primary bottom m-b-md m-t">
+                        <ul class="nav l-h-2x" data-ui-jp="taburl">
+                            <li class="nav-item m-r inline">
+                                <a class="nav-link active" href="#" data-toggle="tab" data-target="#info">Info</a>
+                            </li>
+                            <li class="nav-item m-r inline">
+                                <a class="nav-link" href="#" data-toggle="tab" data-target="#comments">Comments</a>
+                            </li>
+                            <li class="nav-item m-r inline">
+                                <a class="nav-link" href="#" data-toggle="tab" data-target="#likes">Likes</a>
+                            </li>
+                            <li class="nav-item m-r inline">
+                                <a class="nav-link" href="#" data-toggle="tab" data-target="#playlists">Playlists</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="info">
+                        </div>
+                        <div class="tab-pane" id="comments">
+                        </div>
+                        <div class="tab-pane" id="likes">
+                            <div data-ui-jp="jscroll" data-ui-options="{
+                                autoTrigger: false,
+                                loadingHtml: '<i class=\'fa fa-refresh fa-spin text-md text-muted\'></i>',
+                                padding: 50,
+                                nextSelector: 'a.jscroll-next:last'
+                              }">
+                              <div class="row row-lg">
+                                {% for user in user_likes %}
+                                    <div class="col-xs-4 col-sm-4 col-md-3">
+                                        <div class="item">
+                                            <div class="item-media rounded ">
+                                                <a href="" class="item-media-content" style="background-image: url('images/a4.jpg');"></a>
+                                            </div>
+                                            <div class="item-info text-center">
+                                                <div class="item-title text-ellipsis">
+                                                    <a href="">{{ user.username }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                              </div>
+                              <a href="scroll.author.html" class="btn btn-sm white rounded jscroll-next">Show More</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="playlists">
+                            <div data-ui-jp="jscroll" data-ui-options="{
+                                autoTrigger: false,
+                                loadingHtml: '<i class=\'fa fa-refresh fa-spin text-md text-muted\'></i>',
+                                padding: 50,
+                                nextSelector: 'a.jscroll-next:last'
+                              }">
+                              <div class="row row-lg">
+                                {% for playlist in playlists %}
+                                    <div class="col-xs-4 col-sm-4 col-md-3">
+                                        <div class="item">
+                                            <div class="item-media rounded ">
+                                                <a href="{% url 'playlist_detail_page' user_name=playlist.playlist_author playlist_name=playlist.name %}" class="item-media-content" style="background-image: url('{{ playlist.picture.url }}');"></a>
+                                            </div>
+                                            <div class="item-info text-center">
+                                                <div class="item-title text-ellipsis">
+                                                    <a href="{% url 'playlist_detail_page' user_name=playlist.playlist_author playlist_name=playlist.name %}">{{ playlist.name }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                              </div>
+                              <a href="scroll.author.html" class="btn btn-sm white rounded jscroll-next">Show More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

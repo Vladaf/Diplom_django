@@ -19,7 +19,6 @@ def profile(request):
             "track_list": track_list,
             "playlist_list": playlist_list,
             "likes_list": likes_list,
-            "songplaylist_form": SongPlaylistForm(),
             }        
         return render(request, "profile.html", context)
     else:

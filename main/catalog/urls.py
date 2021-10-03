@@ -10,6 +10,7 @@ urlpatterns = [
     path("artists/", views.artists, name="artists_page"),
     path("artists/<artist_name>/", views.artists_detail, name="artists_detail_page"),
     path("artists/<artist_name>/<album_name>/", views.albums_detail, name="albums_detail_page"),
+    path("<post_author>/<band_name>-<song_name>/", views.song_detail, name="song_detail_page"),
     path("<user_name>/<playlist_name>/", views.playlist_detail, name="playlist_detail_page"),
     path("", lambda request: redirect(reverse("discover_page"))),
 ]

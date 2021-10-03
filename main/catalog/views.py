@@ -161,3 +161,23 @@ def playlist_detail(request, user_name, playlist_name):
         "genres_set": genres_set,
         }
     return render(request, "playlist_detail.html", context)
+
+def song_detail(request, post_author, band_name, song_name):
+    song = Song.objects.get(post_author = post_author, band = band_name, name = song_name)
+
+    likes = SongLikes.objects.filter(song_post = song.id)
+    user_likes = []
+    for user in likes:
+        user_likes.append(User.objects.get(username = user.liked_by))
+    
+    songplaylist = SongPlaylist.objects.filter(song = song.id)
+    playlists = []
+    for post in songplaylist:
+        playlists.append(Playlist.objects.get(id = post.playlist.id))
+
+    context = {
+        "track": song,
+        "user_likes": user_likes,
+        "playlists": playlists,
+        }
+    return render(request, "song_detail.html", context)

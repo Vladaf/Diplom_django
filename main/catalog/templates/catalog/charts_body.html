@@ -39,19 +39,19 @@
                         <div class="col-xs-12">
                             <div class="item r" data-id="{{ track.id }}" data-src="{{ track.audio.url }}">
                                 <div class="item-media ">
-                                    <a href="" class="item-media-content" style="background-image: url('{{track.picture.url}}');"></a>
+                                    <a href="{% url 'song_detail_page' post_author=track.post_author band_name=track.band song_name=track.name %}" class="item-media-content" style="background-image: url('{{track.picture.url}}');"></a>
                                     <div class="item-overlay center">
                                         <button  class="btn-playpause">Play</button>
                                     </div>
                                 </div>
                                 <div class="item-info">
                                     <div class="bottom text-right">
-                                        <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#playlist-modal"><i class="fa fa-music fa-fw text-left"></i> Add to Playlist</a>
+                                        <div>{% include 'add_to_playlist.html' with song_post_id=track.id songplaylist_form=songplaylist_form %}</div>
                                         <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
                                         <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                                       </div>
                                     <div class="item-title text-ellipsis">
-                                        <a href="">{{ track.name }}</a>
+                                        <a href="{% url 'song_detail_page' post_author=track.post_author band_name=track.band song_name=track.name %}">{{ track.name }}</a>
                                     </div>
                                     <div class="item-author text-sm text-ellipsis ">
                                         <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>

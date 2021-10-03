@@ -60,12 +60,12 @@
                                                 </div>
                                                 <div class="item-info">
                                                     <div class="bottom text-right">
-                                                        <div>{% include 'add_to_playlist.html' with song_post_id=track.id songplaylist_form=songplaylist_form %}</div>
+                                                        <div>{% include 'add_to_playlist.html' with song_post_id=track.id %}</div>
                                                         <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
                                                         <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                                                     </div>
                                                     <div class="item-title text-ellipsis">
-                                                        <a href="">{{ track.name }}</a>
+                                                        <a href="{% url 'song_detail_page' post_author=track.post_author band_name=track.band song_name=track.name %}">{{ track.name }}</a>
                                                     </div>
                                                     <div class="item-author text-sm text-ellipsis">
                                                         <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>
@@ -109,14 +109,14 @@
                                     <div class="col-xs-4 col-sm-4 col-md-3">
                                         <div class="item r" data-id="{{ playlist.id }}">
                                             <div class="item-media ">
-                                                <a href="{% url 'playlist_detail_page' user_name=user.username playlist_name=playlist.name %}" class="item-media-content" style="background-image: url('{{playlist.picture.url}}');"></a>
+                                                <a href="{% url 'playlist_detail_page' user_name=playlist.playlist_author playlist_name=playlist.name %}" class="item-media-content" style="background-image: url('{{playlist.picture.url}}');"></a>
                                                 <div class="item-overlay center">
                                                     <button class="btn-playpause">Play</button>
                                                 </div>
                                             </div>
                                             <div class="item-info">
                                                 <div class="item-title text-ellipsis">
-                                                    <a href="">{{ playlist.name }}</a>
+                                                    <a href="{% url 'playlist_detail_page' user_name=playlist.playlist_author playlist_name=playlist.name %}">{{ playlist.name }}</a>
                                                 </div>  
                                             </div>
                                         </div>
@@ -131,28 +131,25 @@
                                         <div class="col-xs-4 col-sm-4 col-md-3">
                                             <div class="item r" data-id="{{ track.id }}" data-src="{{ track.audio.url }}">
                                                 <div class="item-media ">
-                                                    <a href="" class="item-media-content" style="background-image: url('{{track.picture.url}}');"></a>
+                                                    <a href="{% url 'song_detail_page' post_author=track.post_author band_name=track.band song_name=track.name %}" class="item-media-content" style="background-image: url('{{track.picture.url}}');"></a>
                                                     <div class="item-overlay center">
                                                         <button  class="btn-playpause">Play</button>
                                                     </div>
                                                 </div>
                                                 <div class="item-info">
-                                                    <div class="item-overlay bottom text-right">
-                                                        <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
-                                                        <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                                                        <div class="dropdown-menu pull-right black lt"></div>
+                                                    <div class="bottom text-right">
+                                                        <div>{% include 'add_to_playlist.html' with song_post_id=track.id songplaylist_form=songplaylist_form %}</div>
+                                                        <div>{% include 'add_like.html' with song_post_id=track.id %}</div>
+                                                        <div><i class="fa fa-play text-muted"></i> {{ track.counter }}</div>
                                                     </div>
+                                                    <div class="block clearfix m-b" style="position: absolute; right: 0;">
+                                                        <a class="btn btn-xs rounded white" href="{% url 'browse_page' genre_name=track.genre %}">{{ track.genre }}</a>
+                                                      </div>
                                                     <div class="item-title text-ellipsis">
-                                                        <a href="">{{ track.name }}</a>
+                                                        <a href="{% url 'song_detail_page' post_author=track.post_author band_name=track.band song_name=track.name %}">{{ track.name }}</a>
                                                     </div>
-                                                    <div class="item-author text-sm text-ellipsis hide">
-                                                        <a href="" class="text-muted">{{ track.band }}</a>
-                                                    </div>
-                                                    <div class="item-meta text-sm text-muted">
-                                                        <span class="item-meta-stats text-xs ">
-                                                            <i class="fa fa-play text-muted"></i> {{ track.counter }}
-                                                            {% include 'add_like.html' with song_post_id=track.id %}
-                                                        </span>
+                                                    <div class="item-author text-sm text-ellipsis">
+                                                        <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>
                                                     </div>
                                                 </div>
                                             </div>
