@@ -5,6 +5,8 @@ from django.views.generic.list import ListView
 from private.forms import *
 from private.models import *
 from likes.models import SongLikes
+from comment.models import SongComments
+from comment.forms import SongCommentsForm
 from user.models import User
 
 
@@ -164,6 +166,7 @@ def playlist_detail(request, user_name, playlist_name):
 
 def song_detail(request, post_author, band_name, song_name):
     song = Song.objects.get(post_author = post_author, band = band_name, name = song_name)
+    user_now = User.objects.get(id = request.user.id)
 
     likes = SongLikes.objects.filter(song_post = song.id)
     user_likes = []
@@ -175,9 +178,25 @@ def song_detail(request, post_author, band_name, song_name):
     for post in songplaylist:
         playlists.append(Playlist.objects.get(id = post.playlist.id))
 
+    comments_list = SongComments.objects.filter(song_post = song.id)
+    
     context = {
         "track": song,
         "user_likes": user_likes,
         "playlists": playlists,
+        "comments_list": comments_list,
+        "comment_form": SongCommentsForm(),
         }
+    
+    if request.method == "POST":
+        form = SongCommentsForm(request.POST)
+        if form.is_valid():
+            upload = form.save(commit = False)
+            upload.song_post = song
+            upload.commented_by = user_now
+            upload.save()
+            return redirect(reverse("song_detail_page", args=[post_author, band_name, song_name]))
+        else:
+            context["comment_form"] = form
+
     return render(request, "song_detail.html", context)

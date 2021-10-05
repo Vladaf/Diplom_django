@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'catalog',
     'private',
     'likes',
+    'comment',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

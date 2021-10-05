@@ -41,8 +41,30 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active" id="info">
+
                         </div>
                         <div class="tab-pane" id="comments">
+                            {% if user.is_authenticated %}
+                                <div>
+                                    <form action="" method="POST">{% csrf_token %}                                           
+                                        <div>         
+                                            {{comment_form}}
+                                            <button type="submit" class="btn green p-x-md right">Save</button>
+                                        </div>        
+                                    </form>
+                                </div>
+                            {% endif %}
+                            {% for comment in comments_list %}    
+                                <div class="col-xs-12">                                    
+                                    <div class="item-info">
+                                        <div>
+                                            <span class="item-title">{{ comment.commented_by.username }}</span>
+                                            <span class="text-muted"> at {{ comment.created }}</span>
+                                        </div>
+                                        <div>{{ comment.comment }}</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="tab-pane" id="likes">
                             <div data-ui-jp="jscroll" data-ui-options="{
