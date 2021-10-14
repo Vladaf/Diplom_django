@@ -27,7 +27,7 @@ def profile(request):
 def upload(request):
     context = {"upload_form": UploadForm()}
     if request.method == "POST":
-        upload_form = UploadForm(request.POST)
+        upload_form = UploadForm(request.POST, request.FILES)
         if upload_form.is_valid():
             upload = upload_form.save(commit = False)
             upload.post_author = request.user.username
@@ -40,10 +40,10 @@ def upload(request):
 def playlist(request):
     context = {"playlist_form": PlaylistForm()}
     if request.method == "POST":
-        playlist_form = PlaylistForm(request.POST)
+        playlist_form = PlaylistForm(request.POST, request.FILES)
         if playlist_form.is_valid():
             playlist = playlist_form.save(commit = False)
-            playlist.playlist_author = request.user.id
+            playlist.playlist_author = request.user
             playlist.save()
             return redirect(reverse("home_page"))
         else:
@@ -54,8 +54,10 @@ class AddToPlaylistView(View):
     def post(self, request, *args, **kwargs):
         song_post_id = int(request.POST.get('song_post_id'))
         playlist_id = int(request.POST.get('playlist'))
+        user_id = int(request.POST.get('user_id'))
         url_form = request.POST.get('url_form')
 
+        user_inst = User.objects.get(id = user_id)
         song_post_inst = Song.objects.get(id = song_post_id)
         playlist_choice_inst = Playlist.objects.get(id = playlist_id)
 
@@ -66,3 +68,38 @@ class AddToPlaylistView(View):
             add_playlist.save()
 
         return redirect(url_form)
+
+class DeleteSongView(View):
+    def post(self, request, *args, **kwargs):
+        song_post_id = int(request.POST.get('song_post_id'))
+        url_form = request.POST.get('url_form')
+
+        song = Song.objects.get(id = song_post_id)
+        song.delete()
+
+        return redirect(url_form)
+
+def edit_song(request, song_id):
+    song = Song.objects.get(id = song_id)
+    initial_dict = {
+        "band" : song.band,
+        "name" : song.name,
+        "album": song.album,
+        "genre": song.genre,
+        "audio": song.audio,
+        "picture": song.picture,
+    }
+    context = {
+        "song": song,
+        "upload_form": UploadForm(initial = initial_dict)
+        }
+    if request.method == "POST":
+        upload_form = UploadForm(request.POST, request.FILES)
+        if upload_form.is_valid():
+            upload = upload_form.save()
+            upload.save()
+            return redirect(reverse("profile_page"))
+        else:
+            context["upload_form"] = upload_form
+    return render(request, "edit_song.html", context)
+

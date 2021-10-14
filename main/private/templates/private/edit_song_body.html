@@ -14,12 +14,8 @@
                 <div class="col-sm">
                     <div class="p-l-md no-padding-xs">
                         <h1 class="page-title">
-                            <span class="h1 _800">{{ user.username }}</span>
+                            <span class="h1 _800">{{ song.band }} - {{ song.name }}</span>
                         </h1>
-                        <div class="item-action m-b">
-                            <a href="{% url 'upload_page' %}" class="btn btn-sm rounded primary">Upload</a>
-                            <a href="#" class="btn btn-sm rounded white">Edit Profile</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -30,8 +26,8 @@
                     <div class="tab-content">
                         <form name="form" action="" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {{playlist_form}}
-                            <button type="submit" class="btn btn-lg black p-x-lg">Create</button>
+                            {{upload_form}}
+                            <button type="submit" class="btn btn-lg black p-x-lg">Save</button>
                         </form>
                     </div>
                 </div>

@@ -93,6 +93,17 @@ DATABASES = {
     }
 }
 
+"""DATABASES = {
+'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'pulse_db',
+    'USER': 'vladaf',
+    'PASSWORD': 'vlad050499Af',
+    'HOST': 'localhost',
+    'PORT': '5432'
+    }
+}"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -141,8 +152,8 @@ STATICFILES_DIRS = [
     BASE_DIR.parent / "media",
 ]
 
-MEDIA_ROOT = BASE_DIR.parent / "media"
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.parent / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

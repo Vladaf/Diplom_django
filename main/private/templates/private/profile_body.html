@@ -33,7 +33,7 @@
                                 <a class="nav-link active" href="#" data-toggle="tab" data-target="#track">Tracks</a>
                             </li>
                             <li class="nav-item m-r inline">
-                                <a class="nav-link" href="#" data-toggle="tab" data-target="#playlist">Playlists</a>
+                                <a class="nav-link" href="#" data-toggle="tab" data-target="#playlists">Playlists</a>
                             </li>
                             <li class="nav-item m-r inline">
                                 <a class="nav-link" href="#" data-toggle="tab" data-target="#like">Likes</a>
@@ -71,12 +71,12 @@
                                                         <a href="{% url 'artists_detail_page' artist_name=track.band %}" class="text-muted">{{ track.band }}</a>
                                                     </div>
                                                     <div class="item-meta text-sm text-muted">
-                                                        <span class="item-meta-category"><a href="" class="label">{{ track.genre }}</a></span>
+                                                        <span class="item-meta-category"><a href="{% url 'browse_page' genre_name=track.genre %}" class="label">{{ track.genre }}</a></span>
                                                         <span class="item-meta-date text-xs">{{ track.post_date }}</span>
                                                     </div>
                                                     <div class="item-action visible-list m-t-sm">
-                                                        <a href="#" class="btn btn-xs white">Edit</a>
-                                                        <a href="#" class="btn btn-xs white" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                                                        <a href="{% url 'edit_song_page' song_id=track.id %}" class="btn btn-xs white">Edit</a>
+                                                        <span>{% include 'delete_song.html' with song_post_id=track.id %}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,7 +88,7 @@
                             </div>
                             <a href="#" class="btn btn-sm white rounded">Show More</a>
                         </div>
-                        <div class="tab-pane" id="playlist">
+                        <div class="tab-pane" id="playlists">
                             <div class="row m-b">
                                 <div class="col-xs-4 col-sm-4 col-md-3">
                                     <div class="item r" data-id="{{ playlist.id }}">

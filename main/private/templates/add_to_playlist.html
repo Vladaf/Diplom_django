@@ -10,6 +10,7 @@
                 <div class="modal-content flip-y">
                     <form action="{% url 'add_to_playlist_page' %}" method="POST">{% csrf_token %}
                         <input type="hidden" name="song_post_id" value="{{ song_post_id }}">
+                        <input type="hidden" name="user_id" value="{% if user.is_authenticated %}{{ request.user.id }}{% else %}None{% endif %}">
                         <input type="hidden" name="url_form" value="{{ request.path }}">
                                 
                         <div class="modal-body">         

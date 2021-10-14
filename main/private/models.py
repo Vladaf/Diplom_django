@@ -29,8 +29,6 @@ class Song(models.Model):
         on_delete=models.CASCADE
     )
     audio = models.FileField(
-        blank=True,
-        null=True,
         verbose_name = "Audio",
     )
     picture = models.ImageField(
