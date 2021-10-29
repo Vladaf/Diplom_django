@@ -79,27 +79,43 @@ class DeleteSongView(View):
 
         return redirect(url_form)
 
+class DeletePlaylistView(View):
+    def post(self, request, *args, **kwargs):
+        playlist_id = int(request.POST.get('playlist_id'))
+        url_form = request.POST.get('url_form')
+
+        playlist = Playlist.objects.get(id = playlist_id)
+        playlist.delete()
+
+        return redirect(url_form)
+
 def edit_song(request, song_id):
     song = Song.objects.get(id = song_id)
-    initial_dict = {
-        "band" : song.band,
-        "name" : song.name,
-        "album": song.album,
-        "genre": song.genre,
-        "audio": song.audio,
-        "picture": song.picture,
-    }
     context = {
         "song": song,
-        "upload_form": UploadForm(initial = initial_dict)
+        "upload_form": UploadForm(instance = song)
         }
     if request.method == "POST":
-        upload_form = UploadForm(request.POST, request.FILES)
+        upload_form = UploadForm(request.POST, request.FILES, instance = song)
         if upload_form.is_valid():
             upload = upload_form.save()
-            upload.save()
             return redirect(reverse("profile_page"))
         else:
             context["upload_form"] = upload_form
     return render(request, "edit_song.html", context)
+
+def edit_playlist(request, playlist_id):
+    playlist = Playlist.objects.get(id = playlist_id)
+    context = {
+        "playlist": playlist,
+        "playlist_form": PlaylistForm(instance = playlist)
+        }
+    if request.method == "POST":
+        playlist_form = PlaylistForm(request.POST, request.FILES, instance = playlist)
+        if playlist_form.is_valid():
+            upload = playlist_form.save()
+            return redirect(reverse("profile_page"))
+        else:
+            context["upload_form"] = playlist_form
+    return render(request, "edit_playlist.html", context)
 

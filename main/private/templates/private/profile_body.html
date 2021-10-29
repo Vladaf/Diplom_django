@@ -117,7 +117,11 @@
                                             <div class="item-info">
                                                 <div class="item-title text-ellipsis">
                                                     <a href="{% url 'playlist_detail_page' user_name=playlist.playlist_author playlist_name=playlist.name %}">{{ playlist.name }}</a>
-                                                </div>  
+                                                    <span class="rigth" style="position: absolute; right: 0;">
+                                                        <a href="{% url 'edit_playlist_page' playlist_id=playlist.id %}" class="btn btn-xs white">Edit</a>
+                                                        {% include 'delete_playlist.html' with playlist_id=playlist.id %}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

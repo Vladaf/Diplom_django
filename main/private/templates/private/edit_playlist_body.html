@@ -1,0 +1,37 @@
+<div class="app-body" id="view">
+	<div class="page-bg" data-stellar-ratio="2" style="background-image: url('images/a3.jpg');">
+    </div>
+	<div class="page-content">
+        <div class="padding b-b">
+            <div class="row-col">
+                <div class="col-sm w w-auto-xs m-b">
+                    <div class="item w rounded">
+                    <div class="item-media">
+                        <div class="item-media-content" style="background-image: url('images/a3.jpg');"></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="p-l-md no-padding-xs">
+                        <h1 class="page-title">
+                            <span class="h1 _800">{{ playlist.name }}</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-col">
+            <div class="col-lg-9 b-r no-border-md">
+                <div class="padding p-y-0 m-b-md">
+                    <div class="tab-content">
+                        <form name="form" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{playlist_form}}
+                            <button type="submit" class="btn btn-lg black p-x-lg">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
